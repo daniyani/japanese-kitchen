@@ -3,10 +3,14 @@ import CartIcon from "../../Svg/CartIcon/CartIcon";
 
 import styles from "./HeaderButton.module.css";
 
-const HeaderButton: FC = () => {
+type Props = {
+  showCartHandler: () => void;
+};
+
+const HeaderButton: FC<Props> = ({ showCartHandler }) => {
   return (
     <>
-      <button className={styles.button}>
+      <button className={styles.button} onClick={showCartHandler}>
         <span className={styles.icon}>
           <CartIcon />
         </span>

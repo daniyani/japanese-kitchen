@@ -4,13 +4,14 @@ import styles from "./Modal.module.css";
 
 type Props = {
   children: JSX.Element | Array<JSX.Element>;
+  hideCartHandler: () => void;
 };
 
-const Backdrop: FC = () => {
-  return <div className={styles.backdrop}></div>;
+const Backdrop: FC<Omit<Props, "children">> = ({ hideCartHandler }) => {
+  return <div className={styles.backdrop} onClick={hideCartHandler}></div>;
 };
 
-const ModalWindow: FC<Props> = ({ children }) => {
+const ModalWindow: FC<Omit<Props, "hideCartHandler">> = ({ children }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.content}>{children}</div>
@@ -20,10 +21,13 @@ const ModalWindow: FC<Props> = ({ children }) => {
 
 const portalElement = document.getElementById("overlays");
 
-const Modal: FC<Props> = ({ children }) => {
+const Modal: FC<Props> = ({ children, hideCartHandler }) => {
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop />, portalElement as HTMLElement)}
+      {ReactDOM.createPortal(
+        <Backdrop hideCartHandler={hideCartHandler} />,
+        portalElement as HTMLElement
+      )}
       {ReactDOM.createPortal(
         <ModalWindow>{children}</ModalWindow>,
         portalElement as HTMLElement

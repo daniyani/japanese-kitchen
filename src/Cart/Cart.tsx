@@ -2,10 +2,15 @@ import { FC } from "react";
 import styles from "./Cart.module.css";
 import Modal from "../Components/Modal/Modal";
 
-const Cart: FC = () => {
+type Props = {
+  hideCartHandler: () => void;
+};
+
+const Cart: FC<Props> = ({ hideCartHandler }) => {
   const fakeItems = [{ id: "m1", name: "Sushi", amount: 4, price: 10.99 }];
+
   return (
-    <Modal>
+    <Modal hideCartHandler={hideCartHandler}>
       <ul className={styles["cart-items"]}>
         {fakeItems.map((item) => (
           <li>{item.name}</li>
@@ -16,7 +21,9 @@ const Cart: FC = () => {
         <span>10</span>
       </div>
       <div className={styles.actions}>
-        <button className={styles["button--alt"]}>Close</button>
+        <button className={styles["button--alt"]} onClick={hideCartHandler}>
+          Close
+        </button>
         <button className={styles.button}>Order</button>
       </div>
     </Modal>
