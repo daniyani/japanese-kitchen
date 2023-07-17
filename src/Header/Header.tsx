@@ -7,7 +7,7 @@ const Header: FC = () => {
   return (
     <>
       <header className={styles.header}>
-        <h1>Japanese kitchen</h1>
+        <h1>Sushi Maker</h1>
         <HeaderButton />
       </header>
       <div className={styles["main-image"]}>

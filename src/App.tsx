@@ -1,9 +1,11 @@
 import Header from "./Header/Header";
+import Meals from "./Meals/Meals";
 
 function App() {
   return (
     <>
       <Header />
+      <Meals />
     </>
   );
 }
