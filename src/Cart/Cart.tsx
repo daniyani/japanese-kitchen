@@ -1,10 +1,11 @@
 import { FC } from "react";
 import styles from "./Cart.module.css";
+import Modal from "../Components/Modal/Modal";
 
 const Cart: FC = () => {
   const fakeItems = [{ id: "m1", name: "Sushi", amount: 4, price: 10.99 }];
   return (
-    <div>
+    <Modal>
       <ul className={styles["cart-items"]}>
         {fakeItems.map((item) => (
           <li>{item.name}</li>
@@ -18,7 +19,7 @@ const Cart: FC = () => {
         <button className={styles["button--alt"]}>Close</button>
         <button className={styles.button}>Order</button>
       </div>
-    </div>
+    </Modal>
   );
 };
 
