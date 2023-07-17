@@ -3,12 +3,13 @@ import styles from "./Meal.module.css";
 import Form from "./Form/Form";
 
 type Props = {
+  id: string;
   name: string;
   description: string;
   price: number;
 };
 
-const Meal: FC<Props> = ({ name, description, price }) => {
+const Meal: FC<Props> = ({ id, name, description, price }) => {
   const formattedPrice = `$${price.toFixed(2)}`;
 
   return (
@@ -19,7 +20,7 @@ const Meal: FC<Props> = ({ name, description, price }) => {
         <div className={styles.price}>{formattedPrice}</div>
       </div>
       <div>
-        <Form />
+        <Form id={id} />
       </div>
     </li>
   );
