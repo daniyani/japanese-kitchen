@@ -3,7 +3,6 @@ import styles from "./Cart.module.css";
 import Modal from "../Components/Modal/Modal";
 import CartContext from "../store/СartContext/CartContext";
 import CartItem from "./CartItem/CartItem";
-import { ICartItems } from "../types/cartContext";
 
 type Props = {
   hideCartHandler: () => void;
