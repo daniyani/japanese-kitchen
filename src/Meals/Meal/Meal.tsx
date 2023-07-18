@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import styles from "./Meal.module.css";
 import Form from "./Form/Form";
+import CartContext from "../../store/СartContext/CartContext";
 
 type Props = {
   id: string;
@@ -10,7 +11,13 @@ type Props = {
 };
 
 const Meal: FC<Props> = ({ id, name, description, price }) => {
+  const context = useContext(CartContext);
+
   const formattedPrice = `$${price.toFixed(2)}`;
+
+  const addToCart = (amount: number) => {
+    context.addItem({ id, name, amount, price });
+  };
 
   return (
     <li className={styles.meal}>
@@ -20,7 +27,7 @@ const Meal: FC<Props> = ({ id, name, description, price }) => {
         <div className={styles.price}>{formattedPrice}</div>
       </div>
       <div>
-        <Form id={id} />
+        <Form id={id} addToCart={addToCart} />
       </div>
     </li>
   );

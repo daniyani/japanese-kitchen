@@ -1,23 +1,18 @@
 import { FC } from "react";
 import styles from "./Input.module.css";
+import { InputType } from "../../types/input";
 
-type InputType = {
-  id: string;
-  type: string;
-  min?: string;
-  step?: string;
-  defaultValue?: string;
-};
 type Props = {
+  onAmountHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   label: string;
   input: InputType;
 };
 
-const Input: FC<Props> = ({ label, input }) => {
+const Input: FC<Props> = ({ onAmountHandler, label, input }) => {
   return (
     <div className={styles.input}>
       <label htmlFor={input.id}>{label}</label>
-      <input {...input} />
+      <input {...input} onChange={onAmountHandler} />
     </div>
   );
 };
