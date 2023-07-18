@@ -23,7 +23,58 @@ const cartReducer = (
     const updatedTotalAmount =
       state.totalAmount + payload.amount * payload.price;
 
-    const updatedItems = state.items.concat(payload);
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === payload.id
+    );
+
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    let updatedItem: ICartItems;
+    let updatedItems: Array<ICartItems>;
+
+    if (existingCartItem) {
+      updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount + payload.amount,
+      };
+
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    } else {
+      updatedItem = { ...payload };
+
+      updatedItems = state.items.concat(updatedItem);
+    }
+
+    return { items: updatedItems, totalAmount: updatedTotalAmount };
+  }
+
+  if (action.type === CartContextKind.REMOVE_ITEM) {
+    const { payload } = action;
+
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === payload
+    );
+
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    const updatedTotalAmount = state.totalAmount - existingCartItem.price;
+
+    let updatedItems: Array<ICartItems>;
+
+    if (existingCartItem.amount > 1) {
+      const updatedItem = {
+        ...existingCartItem,
+        amount: existingCartItem.amount - 1,
+      };
+
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    } else {
+      updatedItems = state.items.filter(
+        (item) => item.id !== existingCartItem.id
+      );
+    }
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
@@ -44,7 +95,9 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     cartDispatcher({ type: CartContextKind.ADD_ITEM, payload: item });
   };
 
-  const removeItemHandler = (id: any): void => {};
+  const removeItemHandler = (id: string): void => {
+    cartDispatcher({ type: CartContextKind.REMOVE_ITEM, payload: id });
+  };
 
   const cartContext: ICartContext = {
     items: cartState.items,
