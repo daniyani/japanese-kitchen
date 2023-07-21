@@ -22,3 +22,8 @@
       transform: translateY(0);
     }
   }
+
+  .centerText {
+    text-align: center;
+    font-size: 18px;
+  }

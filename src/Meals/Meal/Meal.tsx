@@ -2,13 +2,9 @@ import { FC, useContext } from "react";
 import styles from "./Meal.module.css";
 import Form from "./Form/Form";
 import CartContext from "../../store/СartContext/CartContext";
+import { IMeals } from "../../types/Meals";
 
-type Props = {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-};
+type Props = IMeals;
 
 const Meal: FC<Props> = ({ id, name, description, price }) => {
   const context = useContext(CartContext);
