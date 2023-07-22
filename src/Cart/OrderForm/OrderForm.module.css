@@ -1,6 +1,6 @@
 .form {
     margin: 1rem 0;
-    height: 15rem;
+    height: 16rem;
     overflow: auto;
   }
   
@@ -55,6 +55,11 @@
     color: white;
   }
   
+  .actions .submit:disabled {
+    background-color: #6e6a69;
+    cursor: not-allowed;
+  }
+
   .invalid label {
     color: red;
   }
@@ -62,4 +67,8 @@
   .invalid input {
     border-color: red;
     background-color: #dccccc;
+  }
+
+  .invalidText {
+    color: darkred;
   }

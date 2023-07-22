@@ -5,3 +5,5 @@ export interface InputType {
   min?: string;
   step?: string;
 }
+
+export type OnChangeEvent = React.ChangeEvent<HTMLInputElement>;
