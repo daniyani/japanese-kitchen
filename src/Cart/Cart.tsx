@@ -1,4 +1,4 @@
-import { FC, useState, useContext } from "react";
+import { FC, useState, useContext, useEffect } from "react";
 import styles from "./Cart.module.css";
 import Modal from "../Components/Modal/Modal";
 import CartContext from "../store/СartContext/CartContext";
@@ -74,14 +74,22 @@ const Cart: FC<Props> = ({ hideCartHandler }) => {
     }
   };
 
-  const sendingDataContent = <p>Данные заказа отправляются...</p>;
+  useEffect(() => {
+    if (!hasItems) {
+      setOrderFormAvailable(false);
+    }
+  }, [hasItems]);
+
+  const sendingDataContent = (
+    <p className={styles.sendingMessage}>Данные заказа отправляются...</p>
+  );
 
   return (
     <Modal hideCartHandler={hideCartHandler}>
       {isDataSubmitting && sendingDataContent}
       {!isDataSubmitting && isDataSent && (
         <SendDataResult>
-          <p>Данные успешно отправлены!</p>
+          <p className={styles.sendingMessage}>Данные успешно отправлены!</p>
           <div className={styles.actions}>
             <button className={styles["cart-items"]} onClick={hideCartHandler}>
               Close
@@ -91,7 +99,7 @@ const Cart: FC<Props> = ({ hideCartHandler }) => {
       )}
       {!isDataSubmitting && error && (
         <SendDataResult>
-          <p>Что-то пошло не так...</p>
+          <p className={styles.sendingMessage}>Что-то пошло не так...</p>
           <div className={styles.actions}>
             <button className={styles["cart-items"]} onClick={hideCartHandler}>
               Close

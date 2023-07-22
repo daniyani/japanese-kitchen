@@ -44,3 +44,8 @@
     background-color: #6b068a;
     color: white;
   }
+
+  .sendingMessage {
+    font-size: 18px;
+    text-align: center;
+  }
