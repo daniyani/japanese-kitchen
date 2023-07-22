@@ -29,7 +29,7 @@ const Form: FC<Props> = ({ id, addToCart }) => {
   return (
     <form className={styles.form} onSubmit={submitHandler}>
       <Input
-        onAmountHandler={onAmountHandler}
+        handler={onAmountHandler}
         label="Amount"
         input={{
           id,

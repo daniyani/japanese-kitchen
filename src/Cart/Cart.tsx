@@ -1,14 +1,18 @@
-import { FC, useContext } from "react";
+import { FC, useState, useContext } from "react";
 import styles from "./Cart.module.css";
 import Modal from "../Components/Modal/Modal";
 import CartContext from "../store/СartContext/CartContext";
 import CartItem from "./CartItem/CartItem";
+import OrderForm from "./OrderForm/OrderForm";
 
 type Props = {
   hideCartHandler: () => void;
 };
 
 const Cart: FC<Props> = ({ hideCartHandler }) => {
+  const [isOrderFormAvailable, setOrderFormAvailable] =
+    useState<boolean>(false);
+
   const {
     items: cartItems,
     totalAmount,
@@ -26,6 +30,10 @@ const Cart: FC<Props> = ({ hideCartHandler }) => {
 
   const onRemoveCartItem = (id: string): void => {
     removeItem(id);
+  };
+
+  const orderHandler = (): void => {
+    setOrderFormAvailable(true);
   };
 
   return (
@@ -47,12 +55,19 @@ const Cart: FC<Props> = ({ hideCartHandler }) => {
         <span>Итого</span>
         <span>{fixedTotalAmount}</span>
       </div>
-      <div className={styles.actions}>
-        <button className={styles["button--alt"]} onClick={hideCartHandler}>
-          Close
-        </button>
-        {hasItems && <button className={styles.button}>Order</button>}
-      </div>
+      {isOrderFormAvailable && <OrderForm hideCartHandler={hideCartHandler} />}
+      {!isOrderFormAvailable && (
+        <div className={styles.actions}>
+          <button className={styles["button--alt"]} onClick={hideCartHandler}>
+            Close
+          </button>
+          {hasItems && (
+            <button className={styles.button} onClick={orderHandler}>
+              Order
+            </button>
+          )}
+        </div>
+      )}
     </Modal>
   );
 };

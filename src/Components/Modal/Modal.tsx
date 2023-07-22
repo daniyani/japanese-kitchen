@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import styles from "./Modal.module.css";
 
 type Props = {
-  children: JSX.Element | Array<JSX.Element>;
+  children: JSX.Element | Array<JSX.Element> | ReactNode;
   hideCartHandler: () => void;
 };
 
