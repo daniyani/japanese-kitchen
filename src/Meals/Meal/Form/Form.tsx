@@ -30,7 +30,6 @@ const Form: FC<Props> = ({ id, addToCart }) => {
     <form className={styles.form} onSubmit={submitHandler}>
       <Input
         handler={onAmountHandler}
-        label="Amount"
         input={{
           id,
           type: "number",

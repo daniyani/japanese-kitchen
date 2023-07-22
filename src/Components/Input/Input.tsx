@@ -4,14 +4,12 @@ import { InputType } from "../../types/input";
 
 type Props = {
   handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  label: string;
   input: InputType;
 };
 
-const Input: FC<Props> = ({ handler, label, input }) => {
+const Input: FC<Props> = ({ handler, input }) => {
   return (
     <div className={styles.input}>
-      <label htmlFor={input.id}>{label}</label>
       <input {...input} onChange={handler} />
     </div>
   );

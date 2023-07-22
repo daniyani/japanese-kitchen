@@ -11,7 +11,7 @@ const Header: FC<Props> = ({ showCartHandler }) => {
   return (
     <>
       <header className={styles.header}>
-        <h1>Япона кухня</h1>
+        <h1>Japanese kitchen</h1>
         <HeaderButton showCartHandler={showCartHandler} />
       </header>
       <div className={styles["main-image"]}>

@@ -53,7 +53,7 @@ const OrderForm: FC<Props> = ({ hideCartHandler, onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={confirmOrderHandler}>
       <div className={styles.control}>
-        <label htmlFor="name">Введите имя</label>
+        <label htmlFor="name">Enter your name</label>
         <input
           type="text"
           id="name"
@@ -62,7 +62,7 @@ const OrderForm: FC<Props> = ({ hideCartHandler, onSubmit }) => {
         />
       </div>
       <div className={styles.control}>
-        <label htmlFor="city">Введите город</label>
+        <label htmlFor="city">Enter your city</label>
         <input
           type="text"
           id="city"
@@ -71,7 +71,7 @@ const OrderForm: FC<Props> = ({ hideCartHandler, onSubmit }) => {
         />
       </div>
       <div className={styles.control}>
-        <label htmlFor="address">Введите адрес</label>
+        <label htmlFor="address">Enter your address</label>
         <input
           type="text"
           id="address"
@@ -84,10 +84,10 @@ const OrderForm: FC<Props> = ({ hideCartHandler, onSubmit }) => {
       )}
       <div className={styles.actions}>
         <button className={styles.submit} type="submit">
-          Подтвердить заказ
+          Confirm the order
         </button>
         <button type="button" onClick={hideCartHandler}>
-          Отменить заказ
+          Cancel the order
         </button>
       </div>
     </form>

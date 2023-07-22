@@ -42,7 +42,7 @@ const HeaderButton: FC<Props> = ({ showCartHandler }) => {
         <span className={styles.icon}>
           <CartIcon />
         </span>
-        <span>Корзина</span>
+        <span>Cart</span>
         <span className={styles.badge}>{itemsAmount}</span>
       </button>
     </>

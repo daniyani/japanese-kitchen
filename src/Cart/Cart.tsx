@@ -124,7 +124,7 @@ const Cart: FC<Props> = ({ hideCartHandler }) => {
             ))}
           </ul>
           <div className={styles.total}>
-            <span>Итого</span>
+            <span>Total</span>
             <span>{fixedTotalAmount}</span>
           </div>
           {isOrderFormAvailable && hasItems && (
