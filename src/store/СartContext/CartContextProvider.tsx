@@ -79,6 +79,10 @@ const cartReducer = (
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
 
+  if (action.type === CartContextKind.RESET_ITEMS) {
+    return defaultState;
+  }
+
   return defaultState;
 };
 
@@ -99,11 +103,15 @@ const CartContextProvider: FC<Props> = ({ children }) => {
     cartDispatcher({ type: CartContextKind.REMOVE_ITEM, payload: id });
   };
 
+  const resetItemsHandler = (): void => {
+    cartDispatcher({ type: CartContextKind.RESET_ITEMS });
+  };
   const cartContext: ICartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
+    resetItems: resetItemsHandler,
   };
 
   return (

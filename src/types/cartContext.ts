@@ -10,6 +10,7 @@ export interface ICartContext {
   totalAmount: number;
   addItem: (item: any) => void;
   removeItem: (id: any) => void;
+  resetItems: () => void;
 }
 
 export interface CartState {
@@ -20,6 +21,7 @@ export interface CartState {
 export enum CartContextKind {
   ADD_ITEM = "ADD_ITEM",
   REMOVE_ITEM = "REMOVE_ITEM",
+  RESET_ITEMS = "RESET_ITEMS",
 }
 
 export interface CartContextActionAdd {
@@ -32,4 +34,11 @@ export interface CartContextActionRemove {
   payload: string;
 }
 
-export type CartContextActions = CartContextActionAdd | CartContextActionRemove;
+export interface CartContextActionReset {
+  type: CartContextKind.RESET_ITEMS;
+}
+
+export type CartContextActions =
+  | CartContextActionAdd
+  | CartContextActionRemove
+  | CartContextActionReset;

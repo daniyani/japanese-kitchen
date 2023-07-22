@@ -54,11 +54,6 @@
     border-color: #47035d;
     color: white;
   }
-  
-  .actions .submit:disabled {
-    background-color: #6e6a69;
-    cursor: not-allowed;
-  }
 
   .invalid label {
     color: red;

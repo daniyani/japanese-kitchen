@@ -3,12 +3,14 @@ import useInput from "../../hooks/useInput";
 
 import styles from "./OrderForm.module.css";
 import { isTrimmedStringNotEmpty } from "./helper";
+import { IUserData } from "../../types/Cart";
 
 type Props = {
   hideCartHandler: () => void;
+  onSubmit: (userData: IUserData) => void;
 };
 
-const OrderForm: FC<Props> = ({ hideCartHandler }) => {
+const OrderForm: FC<Props> = ({ hideCartHandler, onSubmit }) => {
   const [isFormTouched, setFormTouched] = useState(false);
 
   const {
@@ -30,8 +32,6 @@ const OrderForm: FC<Props> = ({ hideCartHandler }) => {
   const isFormValid =
     isInputNameValid && isInputCityValid && isInputAddressValid;
 
-  const invalidForm = !isFormValid && isFormTouched;
-
   const confirmOrderHandler = (event: React.SyntheticEvent): void => {
     event.preventDefault();
 
@@ -40,6 +40,14 @@ const OrderForm: FC<Props> = ({ hideCartHandler }) => {
     if (!isFormValid) {
       return;
     }
+
+    const sendData = {
+      name: inputName,
+      city: inputCity,
+      address: inputAddress,
+    };
+
+    onSubmit(sendData);
   };
 
   return (
